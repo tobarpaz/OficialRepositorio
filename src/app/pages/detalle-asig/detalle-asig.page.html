@@ -1,0 +1,45 @@
+<ion-header [translucent]="true">
+  <ion-buttons>
+    <ion-back-button></ion-back-button>
+  </ion-buttons>
+  <ion-toolbar>
+    <ion-title>Detalle Asignatura</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-content>
+      <ion-header collapse="condense">
+        <ion-toolbar>
+          <ion-title size="large">Detalle Asignatura</ion-title>
+        </ion-toolbar>
+      </ion-header>
+
+    <!-- Mostrar nombre de la asignatura -->
+      <ion-item>
+        <ion-label>Asignatura</ion-label>
+        <ion-note slot="end">ASIGNATURA</ion-note>
+      </ion-item>
+
+      <!-- Mostrar fecha -->
+      <ion-item>
+        <ion-label>Fecha</ion-label>
+        <ion-note slot="end">00/00/0000</ion-note>
+      </ion-item>
+
+      <!-- Mostrar hora de entrada -->
+      <ion-item>
+        <ion-label>Hora de Entrada</ion-label>
+        <ion-note slot="end">Hora de inicio de la asignatura</ion-note>
+      </ion-item>
+
+      <!-- Mostrar sala -->
+      <ion-item>
+        <ion-label>Sala</ion-label>
+        <ion-note slot="end">Número de sala</ion-note>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+

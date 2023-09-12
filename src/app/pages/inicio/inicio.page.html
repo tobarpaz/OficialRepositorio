@@ -1,0 +1,47 @@
+<ion-header [translucent]="false">
+  <ion-toolbar>
+    <ion-title>inicio</ion-title>
+  </ion-toolbar>
+  <ion-button (click)="atrasSesion()" slot="end">
+    <ion-icon name="log-out-outline"></ion-icon>
+  </ion-button>
+</ion-header>
+
+
+
+<ion-content [fullscreen]="true">
+  <div class="container">
+    <ion-card-header>
+      <ion-card-title class="text">Bienvenido Usuario</ion-card-title>
+      <ion-card-subtitle>Duocuc</ion-card-subtitle>
+    </ion-card-header>
+  </div>
+  <div>
+    <ion-card-content>
+        <ng-container *ngIf="!loading">
+          <ion-card class="cardInicio" *ngFor="let i of inicioArray">
+            <ng-container *ngIf="i.disabled">
+              <div class="box" [routerLink]="i.url">
+                <ion-icon [name]="i.icono "></ion-icon>
+                <h2>{{i.nombre}}</h2>
+              </div>
+              <ion-button class="boton" expand="full" slot="start" (click)=" escaneo()" shape="round">Escanear </ion-button>
+            </ng-container>
+
+            <ng-container *ngIf="!i.disabled">
+              <div class="box" [routerLink]="i.url">
+                <ion-icon [name]="i.icono "></ion-icon>
+                <h2>{{i.nombre}}</h2>
+              </div>
+            </ng-container>
+          </ion-card>
+        </ng-container>
+
+        <ng-container *ngIf="loading">
+          <div class="box-skeleton" *ngFor="let i of [1,2]">
+            <ion-skeleton-text [animated]="true" class="skeleton"></ion-skeleton-text>
+          </div>
+        </ng-container>
+    </ion-card-content>
+  </div>
+</ion-content>

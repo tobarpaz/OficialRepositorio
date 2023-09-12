@@ -1,0 +1,49 @@
+<ion-header [translucent]="true">
+  <ion-buttons>
+    <ion-back-button></ion-back-button>
+  </ion-buttons>
+  <ion-toolbar>
+    <ion-title>s</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">detalle-escaneo</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Asignatura</ion-label>
+        <ion-note slot="end">Nombre de la asignatura</ion-note>
+      </ion-item>
+    
+      <ion-item>
+        <ion-label>Sección</ion-label>
+        <ion-note slot="end">Número de sección</ion-note>
+      </ion-item>
+    
+      <ion-item>
+        <ion-label>Profesor</ion-label>
+        <ion-note slot="end">Nombre del profesor</ion-note>
+      </ion-item>
+    
+      <ion-item>
+        <ion-label>Fecha</ion-label>
+        <ion-note slot="end">Fecha del escaneo</ion-note>
+      </ion-item>
+    
+      <ion-item>
+        <ion-label>Hora</ion-label>
+        <ion-note slot="end">Hora del escaneo</ion-note>
+      </ion-item>
+    
+      <!-- Botón OK -->
+      <ion-button expand="full" (click)="regresar()">OK</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

@@ -1,0 +1,21 @@
+<ion-header [translucent]="true">
+  <ion-buttons>
+    <ion-back-button></ion-back-button>
+  </ion-buttons>
+  <ion-toolbar>
+    <ion-title>registro-asig</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content  [fullscreen]="true">
+  <ion-card class="infoAsig" >
+    <div class="regisAsig">  
+      <ion-card-content>
+        <ion-item >
+          <ion-note slot="end" >ASIGNATURA</ion-note>
+          <ion-button class="boton" expand="full" slot="start" (click)="detalleasig()"  shape="round"> información asignatura </ion-button>
+        </ion-item>
+      </ion-card-content>
+    </div>
+  </ion-card>
+</ion-content>

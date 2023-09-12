@@ -1,0 +1,48 @@
+.cardInicio{
+    background-color:#ecf1f5;
+    border-color: #F2A413;
+    height: 100px;
+    padding-top: 10px;
+}
+
+.container{
+    background-color: #033153;
+    
+}
+.text{
+    color:#F2A413;
+    
+}
+
+.skeleton{
+    height: 70px;
+}
+
+.box-skeleton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.box ion-icon{
+    font-size: 50px;
+}
+
+.box-disabled ion-icon{
+    font-size: 50px;
+}
+
+.box{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around;
+    color:  #F2A413;
+}
+.box-disabled{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around;
+    color:  #F2A413;
+}
