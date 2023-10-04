@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import{Inicio} from 'src/app/models/inicio';
 import { AnimationController, IonCard } from '@ionic/angular';
 import type { Animation } from '@ionic/angular';
+import { HelperService } from 'src/app/services/helper.service';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-inicio',
@@ -20,7 +22,11 @@ export class InicioPage implements OnInit {
 
   loading:boolean= true;
 
-  constructor(private router:Router, private animationCtrl: AnimationController) { }
+  constructor(private router:Router, 
+              private animationCtrl: AnimationController,
+              private helper:HelperService,
+              private auth:AngularFireAuth){}
+
   ngOnInit(){ 
    this.cargarInicio();
    setTimeout(()=>{this.loading=false},3000)
@@ -70,6 +76,13 @@ export class InicioPage implements OnInit {
   }
   registroasig(){
     this.router.navigateByUrl("/registro-asig")
+  }
+  async logout(){
+    var confirm = await this.helper.showConfirm("¿Desea cerrar la sesión actual?","Confirmar","Cancelar");
+    if(confirm == true ){
+      await this.auth.signOut();
+      this.router.navigateByUrl("login");
+    }
   }
 
 }

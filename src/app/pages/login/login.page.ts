@@ -8,6 +8,7 @@ import { HelperService } from 'src/app/services/helper.service';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+
   usuario:string = "";
   contrasena:string = "";
 
@@ -15,7 +16,8 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
   }
-onLogin(){
+
+  onLogin(){
 
     if (this.usuario == "") {
       this.helper.showAlert("Debes ingresar un usuario","Error");
