@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { HelperService } from 'src/app/services/helper.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-login',
@@ -12,36 +14,54 @@ export class LoginPage implements OnInit {
   usuario:string = "";
   contrasena:string = "";
 
-  constructor(private router:Router, private helper:HelperService) { }
+  constructor(private router:Router, 
+              private helper:HelperService,
+              private auth:AngularFireAuth,
+              private storage:StorageService
+  ){}
 
   ngOnInit() {
   }
 
-  onLogin(){
+  async onLogin(){
+    const loader = await this.helper.showLoader("Cargando");
 
     if (this.usuario == "") {
+      await loader.dismiss();
       this.helper.showAlert("Debes ingresar un usuario","Error");
       return;
     }
     if (this.contrasena == "") {
+      await loader.dismiss();
       this.helper.showAlert("Debes ingresar una contraseña","Error");
       return;
     }
+    try {
+      //pgy4121001d@duoc.cl
+      //123456
+      const req = await this.auth.signInWithEmailAndPassword(this.usuario,this.contrasena);
+      console.log("TOKEN", await req.user?.getIdToken());
 
-    if (this.usuario == "pgy4121-001d" && this.contrasena == "pgy4121-001d") {
-    
-      this.router.navigateByUrl('inicio');
-    }else{
-      this.helper.showAlert("Correo o contraseña incorrecto.","Error");
+      this.storage.correoUsuario = this.usuario;
+      await loader.dismiss();
+      await this.router.navigateByUrl('inicio');
+
+    } catch (error:any) {
+      if (error.code == 'auth/invalid-email'){
+        await loader.dismiss();
+        await this.helper.showAlert("El correo no es el correcto.","Error");
+      }
+      if (error.code == 'auth/weak-password'){
+        await loader.dismiss();
+        await this.helper.showAlert("El largo de la contraseña es muy corto.","Error");
+      }
     }
   }
 
   restablecer(){
-    
-      this.router.navigateByUrl('restablecer') 
+    this.router.navigateByUrl('/:passwordReset/restablecer') 
   }
   registro(){
-    
     this.router.navigateByUrl('registro') 
-}
+  } 
 }

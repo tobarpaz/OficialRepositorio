@@ -20,9 +20,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/inicio/inicio.module').then( m => m.InicioPageModule)
   },
   {
-    path: 'restablecer',
+    path: ':passwordReset/restablecer',
     loadChildren: () => import('./pages/restablecer/restablecer.module').then( m => m.RestablecerPageModule)
-  },  {
+  },
+  {
     path: 'registro',
     loadChildren: () => import('./pages/registro/registro.module').then( m => m.RegistroPageModule)
   },

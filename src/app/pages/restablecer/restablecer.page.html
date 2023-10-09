@@ -9,19 +9,15 @@
 
 <ion-content [fullscreen]="true">
   <ion-card>
-    <ion-header collapse="condense">
-      <ion-title size="large">Restablece tu contraseña</ion-title>
-    </ion-header>
-    <div class="container mt-5">
-      <ion-card class="class-body">
-        <h3 class="card-title text-center" >Por favor ingresa tu correo electronico</h3>
-      </ion-card>
-    <div class="form-group mt-5">
-        <ion-input type="Email"  label="Email: "></ion-input>
+    <ion-card-header>
+      <ion-card-title>Restablecer Contraseña</ion-card-title>
+    </ion-card-header>
+      <div class="container mt-5">
+        <ion-card-content>
+          <h3 class="card-title text-center" >Por favor ingresa tu correo electronico</h3>
+          <ion-input [(ngModel)]="correo"  label="Email: "></ion-input>
+          <ion-button expand="block" (click)="restablecerContrasenia()">Enviar Correo</ion-button>
+        </ion-card-content>
       </div>
-      <div class="form-group">
-        <ion-button expand="block" (click)="restablecerContrasenia()">Enviar Correo</ion-button>
-      </div>
-    </div>
-  </ion-card>
+  </ion-card>  
 </ion-content>

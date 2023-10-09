@@ -10,22 +10,33 @@
 <ion-content [fullscreen]="true">
   <ion-card>
     <ion-card-header>
-      <img  alt="logotipo duoc"  src="assets/img/duocduoc.png" />
-      <ion-card-header>
-        <ion-card-title color="light">Registro</ion-card-title>
-        <ion-card-subtitle color="light">Duocuc</ion-card-subtitle>
-      </ion-card-header>
+      <ion-card-title>Registro Usuario</ion-card-title>
     </ion-card-header>
-  <div class="container">  
+  <div class="container">
     <ion-card-content>
-      <ion-input  [(ngModel)]="name" type="text" label="Nombre: "></ion-input>
-      <ion-input [(ngModel)]="lastName" type="text" label="Apellido: "></ion-input>
-      <ion-input [(ngModel)]="email" type="email" label="Correo: "></ion-input>
-      <ion-input [(ngModel)]="password" type="password" label="contraseña: "></ion-input>
-      <ion-input [(ngModel)]="confirmPassword" type="password" label="confirmar contraseña: "></ion-input>
-      <br>
-      <ion-button class="boton" expand="full" slot="start" (click)="onRegister()"  shape="round"> Registrarse </ion-button>
+      <ion-input [(ngModel)]="usuario" label="Usuario: "></ion-input>
+      <ion-input [(ngModel)]="contrasena" type="password" label="Contraseña:"></ion-input>
     </ion-card-content>
   </div>
   </ion-card>
 </ion-content>
+<!-- <ion-card>
+  <ion-card-header>
+    <img  alt="logotipo duoc"  src="assets/img/duocduoc.png" />
+    <ion-card-header>
+      <ion-card-title color="light">Registro</ion-card-title>
+      <ion-card-subtitle color="light">Duocuc</ion-card-subtitle>
+    </ion-card-header>
+  </ion-card-header>
+<div class="container">  
+  <ion-card-content>
+    <ion-input  [(ngModel)]="name" type="text" label="Nombre: "></ion-input>
+    <ion-input [(ngModel)]="lastName" type="text" label="Apellido: "></ion-input>
+    <ion-input [(ngModel)]="email" type="email" label="Correo: "></ion-input>
+    <ion-input [(ngModel)]="password" type="password" label="contraseña: "></ion-input>
+    <ion-input [(ngModel)]="confirmPassword" type="password" label="confirmar contraseña: "></ion-input>
+    <br>
+    <ion-button class="boton" expand="full" slot="start" (click)="onRegister()"  shape="round"> Registrarse </ion-button>
+  </ion-card-content>
+</div>
+</ion-card> -->

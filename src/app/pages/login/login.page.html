@@ -6,13 +6,6 @@
 
 <ion-content [fullscreen]="true">
   <ion-card>
-    <ion-card-header>
-      <img  alt="logotipo duoc"  src="assets/img/duocduoc.png" />
-      <ion-card-header>
-        <ion-card-title color="light">Iniciar Sesión</ion-card-title>
-        <ion-card-subtitle color="light">Duocuc</ion-card-subtitle>
-      </ion-card-header>
-    </ion-card-header>
     <div class="container">  
       <ion-card-content>
         <ion-input  [(ngModel)]="usuario" label="Usuario: "></ion-input>
@@ -21,7 +14,7 @@
         <ion-button class="boton" expand="full" slot="start" (click)="onLogin()"  shape="round"> Iniciar Sesion </ion-button>
         <ion-buttons>
           <ion-button routerLink="/registro" class="botonlogin" slot="end" color="secondary" shape="round">Registrate</ion-button>
-          <ion-button routerLink="/restablecer" class="botonlogin" slot="end" color="secondary" shape="round">Restablecer contraseña</ion-button>
+          <ion-button routerLink="/:passwordReset/restablecer" class="botonlogin" slot="end" color="secondary" shape="round">Restablecer contraseña</ion-button>
         </ion-buttons>
       </ion-card-content>
     </div>
