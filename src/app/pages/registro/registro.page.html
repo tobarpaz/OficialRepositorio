@@ -16,6 +16,8 @@
     <ion-card-content>
       <ion-input [(ngModel)]="usuario" label="Usuario: "></ion-input>
       <ion-input [(ngModel)]="contrasena" type="password" label="Contraseña:"></ion-input>
+
+      <ion-button (click)="onRegister()" expand="full" slot="start"> Registro </ion-button>
     </ion-card-content>
   </div>
   </ion-card>

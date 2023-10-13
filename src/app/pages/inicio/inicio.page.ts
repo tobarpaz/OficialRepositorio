@@ -5,6 +5,7 @@ import { AnimationController, IonCard } from '@ionic/angular';
 import type { Animation } from '@ionic/angular';
 import { HelperService } from 'src/app/services/helper.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-inicio',
@@ -25,7 +26,8 @@ export class InicioPage implements OnInit {
   constructor(private router:Router, 
               private animationCtrl: AnimationController,
               private helper:HelperService,
-              private auth:AngularFireAuth){}
+              private auth:AngularFireAuth,
+              private storage:StorageService){}
 
   ngOnInit(){ 
    this.cargarInicio();
@@ -47,28 +49,26 @@ export class InicioPage implements OnInit {
     }
   }
 
- cargarInicio(){
-  this.inicioArray.push(
-  { id:1,
-    icono:"scan-circle-outline",
-    nombre:"Escanear",
-    url:"/escaneo"
-
-
-  },
-  {
-    id:2,
-    icono:"library-outline",
-    nombre:"Asignatura Alumno",
-    url:"/registro-asig"
+  async cargaUsuarios(){
+    console.log("USUARIOS", await this.storage.obtenerUsuarios());
   }
-  )
- }
 
- 
+  cargarInicio(){
+    this.inicioArray.push(
+    { id:1,
+      icono:"scan-circle-outline",
+      nombre:"Escanear",
+      url:"/escaneo"
 
-  atrasSesion(){
-    this.router.navigateByUrl("/login");
+
+    },
+    {
+      id:2,
+      icono:"library-outline",
+      nombre:"Asignatura Alumno",
+      url:"/registro-asig"
+    }
+    )
   }
   
   escaneo(){
@@ -77,6 +77,7 @@ export class InicioPage implements OnInit {
   registroasig(){
     this.router.navigateByUrl("/registro-asig")
   }
+
   async logout(){
     var confirm = await this.helper.showConfirm("¿Desea cerrar la sesión actual?","Confirmar","Cancelar");
     if(confirm == true ){
