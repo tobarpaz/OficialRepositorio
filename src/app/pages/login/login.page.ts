@@ -55,6 +55,10 @@ export class LoginPage implements OnInit {
         await loader.dismiss();
         await this.helper.showAlert("El largo de la contraseña es muy corto.","Error");
       }
+      if(error.code == 'auth/invalid-login-credentials'){
+        await loader.dismiss();
+        await this.helper.showAlert("La contraseña o correo no es la correcta","Error");
+      }
     }
   }
 

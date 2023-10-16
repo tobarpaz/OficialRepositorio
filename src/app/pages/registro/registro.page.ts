@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
+import { Comuna } from 'src/app/models/comuna';
+import { Region } from 'src/app/models/region';
 import { HelperService } from 'src/app/services/helper.service';
 import { LocationService } from 'src/app/services/location.service';
 import { StorageService } from 'src/app/services/storage.service';
@@ -12,11 +14,17 @@ import { StorageService } from 'src/app/services/storage.service';
 })
 export class RegistroPage implements OnInit {
 
-  //name:string = "";
-  //lastName:string = "";
+  name:string = "";
+  lastName:string = "";
   usuario:string = "";
   contrasena:string = "";
-  //confirmPassword:string = "";
+  confirmContrasena:string = "";
+  regiones:Region[]=[];
+  comunas:Comuna[]=[];
+  regionSel:number = 0;
+  comunaSel:number = 0;
+
+  disabledComuna:boolean = true;
 
   constructor(private router:Router, 
               private helper:HelperService,
@@ -25,21 +33,54 @@ export class RegistroPage implements OnInit {
               private locationService:LocationService) { }
 
   ngOnInit() {
+    this.cargarRegion();
   }
+
+  async cargarRegion(){
+      const req =await this.locationService.getRegion();
+      this.regiones=req.data;
+
+    }
+
+  async cargarComuna(){
+   try{const req= await this.locationService.getComuna(this.regionSel)
+   this.comunas=req.data;
+   this.disabledComuna=false;
+  } catch(error:any){
+    await this.helper.showAlert(error.error.msg,"Error");
+  }
+
+  }
+  
 
   async onRegister(){
     const loader = await this.helper.showLoader("Cargando");
-    if(this.usuario == ''){
+    if(this.name.trim() === '' || this.lastName.trim() === '' ||
+      this.usuario === '' || this.contrasena.trim() === '' || this.confirmContrasena.trim() === ''||
+      this.regionSel === 0 || this.comunaSel === 0){
       await loader.dismiss();
-      await this.helper.showAlert("Debe ingresar un correo","Error");
+      await this.helper.showAlert("Debes rellenar todos los campos","Error");
       return;
     }
 
+    if(this.contrasena !== this.confirmContrasena){
+      await loader.dismiss();
+      await this.helper.showAlert("Las contraseseñas no coinciden", "Error");
+      return;
+    }
+
+    if(this.contrasena.length < 6 || this.contrasena.length > 10){
+      await loader.dismiss();
+      await this.helper.showAlert("La contraseña debe tener entre 6 y 10 caracteres", "Error")
+    }
+  
     var user =
     [
       {
         correo:this.usuario,
-        contrasena:this.contrasena
+        contrasena:this.contrasena,
+        nombre: this.name,
+        apelldo: this.lastName
       }
     ]
     try {
@@ -63,32 +104,4 @@ export class RegistroPage implements OnInit {
       }
     }
   }
-
-
-
-
-
-  // onRegister(){
-
-  //   if(!this.name || !this.lastName || !this.email || !this.password || !this.confirmPassword){
-  //     this.helper.showAlert("Por favor, complete todos los campos.","Error");
-  //     return;
-  //   }
-
-  //   if(this.password !== this.confirmPassword){
-  //     this.helper.showAlert("Las contraseñas no coinciden.","Error");
-  //     return;
-  //   }
-
-  //   const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-  //   if(!emailPattern.test(this.email)){
-  //     this.helper.showAlert("Ingrese un Correo electrónico válido","Error");
-  //     return;
-  //   }
-
-  //   this.helper.showAlert("¡Registro exitoso!","Éxito");
-  //   this.router.navigateByUrl('login');
-
-  // }
-
 }
