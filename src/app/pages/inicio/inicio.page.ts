@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import{Inicio} from 'src/app/models/inicio';
-import { AnimationController, IonCard } from '@ionic/angular';
+import { AnimationController, IonCard, MenuController } from '@ionic/angular';
 import type { Animation } from '@ionic/angular';
 import { HelperService } from 'src/app/services/helper.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
@@ -27,14 +27,28 @@ export class InicioPage implements OnInit {
               private animationCtrl: AnimationController,
               private helper:HelperService,
               private auth:AngularFireAuth,
-              private storage:StorageService){}
+              private storage:StorageService,
+              private menuCtrl:MenuController){}
 
   ngOnInit(){ 
-   this.cargarInicio();
-   setTimeout(()=>{this.loading=false},3000)
-    
+    this.cargarInicio();
+    setTimeout(()=>{this.loading=false},3000)
+    this.helper.showtoast("¡¡¡Bienvenido esclavo de Duoc!!!")
   }
   
+  profileUser(){
+    this.menuCtrl.close();
+    this.router.navigateByUrl("perfil-usuario");
+  }
+
+  menu(){
+    this.menuCtrl.toggle();
+  }
+
+  closeMenu(){
+    this.menuCtrl.close();
+  }
+
   ionViewWillEnter() {
     const refs = document.querySelectorAll("ion-content");
 

@@ -9,6 +9,7 @@ const keyStorageUser = "usuarioData";
   providedIn: 'root'
 })
 export class StorageService {
+  
   public correoUsuario: string = "";
 
   constructor(private authFire:AngularFireAuth){}

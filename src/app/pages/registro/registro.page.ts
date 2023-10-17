@@ -80,7 +80,9 @@ export class RegistroPage implements OnInit {
         correo:this.usuario,
         contrasena:this.contrasena,
         nombre: this.name,
-        apelldo: this.lastName
+        apellido: this.lastName,
+        region: this.regionSel,
+        comuna: this.comunaSel
       }
     ]
     try {
@@ -90,15 +92,15 @@ export class RegistroPage implements OnInit {
       await loader.dismiss();
       await this.helper.showAlert("Usuario registrado correctamente.","Información");
     } catch (error:any) {
-      if(error.code = 'auth/email-already-in-use'){
+      if(error.code == 'auth/email-already-in-use'){
         await loader.dismiss();
         await this.helper.showAlert("El correo ya se encuentra registrado.","Error");
       }
-      if(error.code = 'auth/invalid-email'){
+      if(error.code == 'auth/invalid-email'){
         await loader.dismiss();
         await this.helper.showAlert("El correo no es el correcto.","Error");
       }
-      if(error.code = 'auth/weak-password'){
+      if(error.code == 'auth/weak-password'){
         await loader.dismiss();
         await this.helper.showAlert("El largo de la contraseña es muy corto.","Error");
       }

@@ -47,7 +47,11 @@ const routes: Routes = [
   {
     path: 'detalle-escaneo',
     loadChildren: () => import('./pages/detalle-escaneo/detalle-escaneo.module').then( m => m.DetalleEscaneoPageModule)
+  },  {
+    path: 'perfil-usuario',
+    loadChildren: () => import('./pages/perfil-usuario/perfil-usuario.module').then( m => m.PerfilUsuarioPageModule)
   },
+
 
 ];
 
