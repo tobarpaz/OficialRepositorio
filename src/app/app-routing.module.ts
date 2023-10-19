@@ -51,6 +51,10 @@ const routes: Routes = [
     path: 'perfil-usuario',
     loadChildren: () => import('./pages/perfil-usuario/perfil-usuario.module').then( m => m.PerfilUsuarioPageModule)
   },
+  {
+    path: 'confirm-qr',
+    loadChildren: () => import('./modals/confirm-qr/confirm-qr.module').then( m => m.ConfirmQRPageModule)
+  },
 
 
 ];

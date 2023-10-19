@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LocationService } from 'src/app/services/location.service';
 import { StorageService } from 'src/app/services/storage.service';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-perfil-usuario',
@@ -12,31 +13,44 @@ export class PerfilUsuarioPage implements OnInit {
   user:any;
   userFilter:any;
   regiones: any;
-  comunas: any;
+  regionFilter: any;
 
   constructor(private storage:StorageService,
-              private location:LocationService
+              private location:LocationService,
+              private auth:AngularFireAuth
                                              ){}
 
   ngOnInit() {
     this.cargarUsuario();
+    this.cargarRegion();
   }
 
   async cargarUsuario(){
     this.user = await this.storage.obtenerUsuarios();
-    this.regiones = (await this.location.getRegion()).data;
-    this.comunas = (await this.location.getComuna(this.userFilter.getRegion)).data;
-    console.log("USUARIOS REGISTRADOS:", this.user);
+    this.regiones = await this.location.getRegion();
+    var emailUserToken = await  this.auth.currentUser;
 
-    this.userFilter = this.user.filter((e: { correo: string; }) => e.correo == this.storage.correoUsuario);
-    this.userFilter = this.regiones.find((r: { region: string; }) => r.region === this.userFilter.region);
-    this.userFilter = this.comunas.find((c: { comuna: string; }) => c.comuna === this.userFilter.comuna);
-    //if(this.userFilter){
-    //  const region = this.regiones.find((r: { region: string; }) => r.region === this.userFilter.region);
-    //  const comuna = this.comunas.find((c: { comuna: string; }) => c.comuna === this.userFilter.comuna);
-    //  this.userFilter.regionNombre = region ? region.nombre : 'No definido';
-    //  this.userFilter.comunaNombre = comuna ? comuna.nombre : 'No definido';
-    //}
+    
+    this.userFilter = this.user.filter((e: { correo: string; }) => e.correo == emailUserToken?.email);
+    
+
+    // console.log("Usuario filtrado:", userFilt);
+
+    if (this.userFilter) {
+      console.log("Usuario filtrado:", this.userFilter);
+      console.log("Comunas:", this.regiones);
+      //this.regiones = this.regiones.filter((e: { nombre: string;  }) => e.nombre == e.nombre);
+
+      //this.regiones = (await this.location.getComuna(this.userFilter.region)).data;
+    }
+
+  }
+
+  async cargarRegion(){
+    this.regiones = await this.storage.obtenerRegiones();
+    console.log("regiones:", this.regiones );
+    this.regionFilter = this.regiones.filter((e: { nombre: string;  }) => e.nombre == e.nombre);
+    console.log("FILTRADO REGIONES:", this.regionFilter);
   }
 
 }

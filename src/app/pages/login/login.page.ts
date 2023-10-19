@@ -37,12 +37,14 @@ export class LoginPage implements OnInit {
       return;
     }
     try {
-      //pgy4121001d@duoc.cl
-      //123456
+   
       const req = await this.auth.signInWithEmailAndPassword(this.usuario,this.contrasena);
       console.log("TOKEN", await req.user?.getIdToken());
 
-      this.storage.correoUsuario = this.usuario;
+      // this.storage.correoUsuario = this.usuario;
+      console.log("USER" , req.user);
+      
+
       await loader.dismiss();
       await this.router.navigateByUrl('inicio');
 

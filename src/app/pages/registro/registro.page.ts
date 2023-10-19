@@ -24,6 +24,8 @@ export class RegistroPage implements OnInit {
   regionSel:number = 0;
   comunaSel:number = 0;
 
+
+
   disabledComuna:boolean = true;
 
   constructor(private router:Router, 
@@ -39,6 +41,8 @@ export class RegistroPage implements OnInit {
   async cargarRegion(){
       const req =await this.locationService.getRegion();
       this.regiones=req.data;
+     
+
 
     }
 
@@ -88,6 +92,7 @@ export class RegistroPage implements OnInit {
     try {
       const request = await this.auth.createUserWithEmailAndPassword(this.usuario,this.contrasena);
         this.storage.guardarUsuario(user);
+        this.storage.guardarRegion(this.regionSel);
       await this.router.navigateByUrl('login');
       await loader.dismiss();
       await this.helper.showAlert("Usuario registrado correctamente.","Información");

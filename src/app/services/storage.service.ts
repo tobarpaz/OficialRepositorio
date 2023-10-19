@@ -4,6 +4,7 @@ import { Preferences } from '@capacitor/preferences';
 
 
 const keyStorageUser = "usuarioData";
+const keyStorageCurrentUser = "currentUser";
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,7 @@ export class StorageService {
     await Preferences.set({key:llave, value:valor});
   }
 
+
   async obtenerUsuarios(){
     const usuarios = await this.getItem(keyStorageUser);
 
@@ -41,7 +43,38 @@ export class StorageService {
     }
   }
 
-  async guardarUsuario(usuario:any[]){
+  async obtenerRegiones(){
+    const regiones = await this.getItem(keyStorageUser);
+
+    if(regiones == null){
+      return [];
+    }
+
+    const regionSel = JSON.parse(regiones);
+
+    if(regiones){
+      return regiones;
+    }
+    else
+    {
+      return [];
+    }
+  }
+
+  async guardarRegion(region:any){
+    const usersStorage = await this.obtenerRegiones();
+    for(const i of usersStorage){
+      if(i){
+        region.push(i);
+      }
+    }
+    this.setItem(keyStorageUser,JSON.stringify(region));
+  }
+
+
+
+
+  async guardarUsuario(usuario:any){
     const usersStorage = await this.obtenerUsuarios();
     for(const i of usersStorage){
       if(i){

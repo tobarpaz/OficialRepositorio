@@ -10,13 +10,24 @@
 <ion-content [fullscreen]="true">
   <ion-card *ngFor="let i of userFilter">
     <h3>
-      {{i.correo}}
-    </h3>
-    <h3>
+      {{i.correo}} 
+      <br>
+      {{i.nombre}}  
+      <br>
+      {{i.apellido}}
+      <br> 
       {{i.region}}
+      <br> 
+      {{i.comuna}}
+      <br>
+      {{i.id}}
+      <br> 
+      {{i.id}}
     </h3>
+  </ion-card>
+  <ion-card *ngFor="let i of regionFilter">
     <h3>
-        {{i.comuna}}
+      {{i.nombre}}
     </h3>
   </ion-card>
 </ion-content>
