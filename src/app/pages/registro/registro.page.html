@@ -3,15 +3,12 @@
     <ion-back-button></ion-back-button>
   </ion-buttons>
   <ion-toolbar>
-    <ion-title>Registro</ion-title>
+    <ion-title>Registro Usuario</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-card>
-    <ion-card-header>
-      <ion-card-title>Registro Usuario</ion-card-title>
-    </ion-card-header>
   <div class="container">
     <ion-card-content>
       <ion-input [(ngModel)]="name" label="Nombre: "></ion-input>
@@ -28,7 +25,6 @@
           </ion-select>
         </ion-item>
       </ion-list>
-   
       <ion-list>
         <ion-item>
           <ion-select [disabled]="disabledComuna" placeholder="Seleccione comuna" [(ngModel)]="comunaSel">

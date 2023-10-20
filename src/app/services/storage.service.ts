@@ -4,7 +4,6 @@ import { Preferences } from '@capacitor/preferences';
 
 
 const keyStorageUser = "usuarioData";
-const keyStorageCurrentUser = "currentUser";
 
 @Injectable({
   providedIn: 'root'
