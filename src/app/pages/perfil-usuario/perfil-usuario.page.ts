@@ -18,11 +18,11 @@ export class PerfilUsuarioPage implements OnInit {
   constructor(private storage:StorageService,
               private location:LocationService,
               private auth:AngularFireAuth
-                                             ){}
+                                              ){}
 
   ngOnInit() {
     this.cargarUsuario();
-    this.cargarRegion();
+    //this.cargarRegion();
   }
 
   async cargarUsuario(){
@@ -33,7 +33,7 @@ export class PerfilUsuarioPage implements OnInit {
     
     this.userFilter = this.user.filter((e: { correo: string; }) => e.correo == emailUserToken?.email);
     
-
+    console.log("Usuario filtrado:", this.userFilter);
     // console.log("Usuario filtrado:", userFilt);
 
     if (this.userFilter) {
@@ -41,16 +41,16 @@ export class PerfilUsuarioPage implements OnInit {
       console.log("Comunas:", this.regiones);
       //this.regiones = this.regiones.filter((e: { nombre: string;  }) => e.nombre == e.nombre);
 
-      //this.regiones = (await this.location.getComuna(this.userFilter.region)).data;
+      this.regiones = (await this.location.getComuna(this.userFilter.region)).data;
     }
 
   }
 
-  async cargarRegion(){
-    this.regiones = await this.storage.obtenerRegiones();
-    console.log("regiones:", this.regiones );
-    this.regionFilter = this.regiones.filter((e: { nombre: string;  }) => e.nombre == e.nombre);
-    console.log("FILTRADO REGIONES:", this.regionFilter);
-  }
+  // async cargarRegion(){
+  //   this.regiones = await this.storage.obtenerRegiones();
+  //   console.log("regiones:", this.regiones );
+  //   this.regionFilter = this.regiones.filter((e: { nombre: string;  }) => e.nombre == e.nombre);
+  //   console.log("FILTRADO REGIONES:", this.regionFilter);
+  // }
 
 }
