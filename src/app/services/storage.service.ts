@@ -42,33 +42,33 @@ export class StorageService {
     }
   }
 
-  async obtenerRegiones(){
-    const regiones = await this.getItem(keyStorageUser);
+  // async obtenerRegiones(){
+  //   const regiones = await this.getItem(keyStorageUser);
 
-    if(regiones == null){
-      return [];
-    }
+  //   if(regiones == null){
+  //     return [];
+  //   }
 
-    const regionSel = JSON.parse(regiones);
+  //   const regionSel = JSON.parse(regiones);
 
-    if(regiones){
-      return regiones;
-    }
-    else
-    {
-      return [];
-    }
-  }
+  //   if(regiones){
+  //     return regiones;
+  //   }
+  //   else
+  //   {
+  //     return [];
+  //   }
+  // }
 
-  async guardarRegion(region:any){
-    const usersStorage = await this.obtenerRegiones();
-    for(const i of usersStorage){
-      if(i){
-        region.push(i);
-      }
-    }
-    this.setItem(keyStorageUser,JSON.stringify(region));
-  }
+  // async guardarRegion(region:any){
+  //   const usersStorage = await this.obtenerRegiones();
+  //   for(const i of usersStorage){
+  //     if(i){
+  //       region.push(i);
+  //     }
+  //   }
+  //   this.setItem(keyStorageUser,JSON.stringify(region));
+  // }
 
 
 

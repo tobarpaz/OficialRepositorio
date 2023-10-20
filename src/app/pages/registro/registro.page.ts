@@ -41,15 +41,14 @@ export class RegistroPage implements OnInit {
   async cargarRegion(){
       const req =await this.locationService.getRegion();
       this.regiones=req.data;
-     
-
 
     }
 
   async cargarComuna(){
-   try{const req= await this.locationService.getComuna(this.regionSel)
-   this.comunas=req.data;
-   this.disabledComuna=false;
+   try{
+      const req= await this.locationService.getComuna(this.regionSel)
+      this.comunas=req.data;
+      this.disabledComuna=false;
   } catch(error:any){
     await this.helper.showAlert(error.error.msg,"Error");
   }
@@ -92,7 +91,7 @@ export class RegistroPage implements OnInit {
     try {
       const request = await this.auth.createUserWithEmailAndPassword(this.usuario,this.contrasena);
         this.storage.guardarUsuario(user);
-        this.storage.guardarRegion(this.regionSel);
+        //this.storage.guardarRegion(this.regionSel);
       await this.router.navigateByUrl('login');
       await loader.dismiss();
       await this.helper.showAlert("Usuario registrado correctamente.","Información");

@@ -28,7 +28,7 @@ export class PerfilUsuarioPage implements OnInit {
   async cargarUsuario(){
     this.user = await this.storage.obtenerUsuarios();
     this.regiones = await this.location.getRegion();
-    var emailUserToken = await  this.auth.currentUser;
+    var emailUserToken = await this.auth.currentUser;
 
     
     this.userFilter = this.user.filter((e: { correo: string; }) => e.correo == emailUserToken?.email);
@@ -41,7 +41,7 @@ export class PerfilUsuarioPage implements OnInit {
       console.log("Comunas:", this.regiones);
       //this.regiones = this.regiones.filter((e: { nombre: string;  }) => e.nombre == e.nombre);
 
-      this.regiones = (await this.location.getComuna(this.userFilter.region)).data;
+      this.regiones = (await this.location.getComuna(this.userFilter.correo)).data;
     }
 
   }
