@@ -4,7 +4,7 @@ import { Preferences } from '@capacitor/preferences';
 
 
 const keyStorageUser = "usuarioData";
-
+const keyStorageasist="asistData";
 @Injectable({
   providedIn: 'root'
 })
@@ -41,6 +41,47 @@ export class StorageService {
       return [];
     }
   }
+  async guardarUsuario(usuario:any){
+    const usersStorage = await this.obtenerUsuarios();
+    for(const i of usersStorage){
+      if(i){
+        usuario.push(i);
+      }
+    }
+    this.setItem(keyStorageUser,JSON.stringify(usuario));
+  }
+
+
+
+    async asistencia(){
+      const asistencia = await this.getItem(keyStorageasist);
+
+    if(asistencia == null){
+      return [];
+    }
+
+    const asist = JSON.parse(asistencia);
+
+    if(asist){
+      return asist;
+    }
+    else
+    {
+      return [];
+    }
+}
+
+async guardarAsistencia(asistencia:any){
+  const asistStorage = await this.asistencia();
+  for(const i of asistStorage){
+    if(i){
+      asistencia.push(i);
+    }
+  }
+  this.setItem(keyStorageasist,JSON.stringify(asistencia));
+}
+
+}  
 
   // async obtenerRegiones(){
   //   const regiones = await this.getItem(keyStorageUser);
@@ -70,17 +111,3 @@ export class StorageService {
   //   this.setItem(keyStorageUser,JSON.stringify(region));
   // }
 
-
-
-
-  async guardarUsuario(usuario:any){
-    const usersStorage = await this.obtenerUsuarios();
-    for(const i of usersStorage){
-      if(i){
-        usuario.push(i);
-      }
-    }
-    this.setItem(keyStorageUser,JSON.stringify(usuario));
-  }
-
-}

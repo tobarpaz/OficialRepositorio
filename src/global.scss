@@ -25,6 +25,13 @@
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
 
+
+
+@font-face {
+    font-family: titulo;
+    src: url(assets/font/Ghost\ Stories\ Deluxe\ Italic.otf);
+}
+
 ion-card{
     background-color:#033153;
     border-color: #F2A413;
