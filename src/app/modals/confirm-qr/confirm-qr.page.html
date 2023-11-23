@@ -6,13 +6,17 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
- <ion-card *ngFor="let i of asd">
-  <h3>{{i.docente}}</h3>
-  <h4>{{i.asignatura}}</h4>
-  <h4>{{i.fecha}}</h4>
-  <h4>{{i.hora}}</h4>
-  <h4>{{i.leccion}}</h4>
-  <h4>{{i.sala}}</h4>
-  <h4>{{i.seccion}}</h4>
- </ion-card>
+  <ion-card *ngFor="let i of datitos">
+    <h3>{{i.docente}}</h3>
+    <h4>{{i.asignatura}}</h4>
+    <h4>{{i.fecha}}</h4>
+    <h4>{{i.hora}}</h4>
+    <h4>{{i.leccion}}</h4>
+    <h4>{{i.sala}}</h4>
+    <h4>{{i.seccion}}</h4>
+  </ion-card>
+  <ion-card>
+    <ion-button (click)="confirm()" expand="full">Confirmar</ion-button>
+    <ion-button (click)="close()" expand="full">Cancelar</ion-button>
+  </ion-card>
 </ion-content>

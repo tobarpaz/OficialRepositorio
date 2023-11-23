@@ -3,6 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AngularFireAuthGuard, redirectUnauthorizedTo } from '@angular/fire/compat/auth-guard';
 
 const redireccionLogin = () => redirectUnauthorizedTo(['/login']);
+const redireccionRegistro = () => redirectUnauthorizedTo(['/registro']);
 
 const routes: Routes = [
   {
@@ -33,6 +34,12 @@ const routes: Routes = [
     loadChildren: () => import('./pages/registro/registro.module').then( m => m.RegistroPageModule)
   },
   {
+    canActivate:[AngularFireAuthGuard],
+    data:{authGuardPipe: redireccionRegistro},
+    path: 'Login',
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+  },
+  {
     path: 'escaneo',
     loadChildren: () => import('./pages/escaneo/escaneo.module').then( m => m.EscaneoPageModule)
   },
@@ -47,7 +54,8 @@ const routes: Routes = [
   {
     path: 'detalle-escaneo',
     loadChildren: () => import('./pages/detalle-escaneo/detalle-escaneo.module').then( m => m.DetalleEscaneoPageModule)
-  },  {
+  },
+  {
     path: 'perfil-usuario',
     loadChildren: () => import('./pages/perfil-usuario/perfil-usuario.module').then( m => m.PerfilUsuarioPageModule)
   },

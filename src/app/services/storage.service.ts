@@ -53,8 +53,8 @@ export class StorageService {
 
 
 
-    async asistencia(){
-      const asistencia = await this.getItem(keyStorageasist);
+  async asistencia(){
+    const asistencia = await this.getItem(keyStorageasist);
 
     if(asistencia == null){
       return [];

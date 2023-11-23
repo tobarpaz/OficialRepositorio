@@ -72,6 +72,19 @@
           </ion-card>
         </ng-container>
 
+        <ion-card-content>
+          <ion-list>
+            <ion-item>
+              <ion-label>Latitud:</ion-label>
+              <ion-text>{{ latitude }}</ion-text>
+            </ion-item>
+            <ion-item>
+              <ion-label>Longitud:</ion-label>
+              <ion-text>{{ longitude }}</ion-text>
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+
         <ng-container *ngIf="loading">
           <div class="box-skeleton" *ngFor="let i of [1,2]">
             <ion-skeleton-text [animated]="true" class="skeleton"></ion-skeleton-text>

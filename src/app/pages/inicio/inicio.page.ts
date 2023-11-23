@@ -6,6 +6,7 @@ import type { Animation } from '@ionic/angular';
 import { HelperService } from 'src/app/services/helper.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { StorageService } from 'src/app/services/storage.service';
+import { Geolocation } from '@capacitor/geolocation';
 
 @Component({
   selector: 'app-inicio',
@@ -22,6 +23,9 @@ export class InicioPage implements OnInit {
   inicioArray:Inicio[]=[];
 
   loading:boolean= true;
+  latitude: number | undefined;
+  longitude: number | undefined;
+
 
   constructor(private router:Router, 
               private animationCtrl: AnimationController,
@@ -33,7 +37,15 @@ export class InicioPage implements OnInit {
   ngOnInit(){ 
     this.cargarInicio();
     setTimeout(()=>{this.loading=false},3000)
+    this.MostrarGeolocalizacion();
+
     this.helper.showtoast("¡¡¡Bienvenido esclavo de Duoc!!!")
+  }
+
+  async MostrarGeolocalizacion() {
+    const coordinates = await Geolocation.getCurrentPosition();
+    this.latitude = coordinates.coords.latitude;
+    this.longitude = coordinates.coords.longitude;
   }
   
   profileUser(){
