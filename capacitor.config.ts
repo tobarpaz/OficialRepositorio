@@ -1,8 +1,8 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'cl.pintob.app',
-  appName: 'RegisterAPP',
+  appId: 'cl.pazfel.app',
+  appName: 'AsistenciaAPP',
   webDir: 'www',
   server: {
     androidScheme: 'https'

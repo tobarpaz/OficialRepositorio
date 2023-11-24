@@ -14,6 +14,7 @@ export class LoginPage implements OnInit {
   usuario:string = "";
   contrasena:string = "";
 
+
   constructor(private router:Router, 
               private helper:HelperService,
               private auth:AngularFireAuth,
@@ -22,6 +23,8 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
   }
+
+
 
   async onLogin(){
     const loader = await this.helper.showLoader("Cargando");
@@ -41,7 +44,7 @@ export class LoginPage implements OnInit {
       const req = await this.auth.signInWithEmailAndPassword(this.usuario,this.contrasena);
       console.log("TOKEN", await req.user?.getIdToken());
 
-      // this.storage.correoUsuario = this.usuario;
+      this.storage.correoUsuario = this.usuario;
       console.log("USER" , req.user);
       
 

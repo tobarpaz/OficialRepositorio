@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
+
 import { Preferences } from '@capacitor/preferences';
 
 
@@ -12,7 +12,7 @@ export class StorageService {
   
   public correoUsuario: string = "";
 
-  constructor(private authFire:AngularFireAuth){}
+  constructor(){}
 
   async getItem(llave:string):Promise<string | null>{
     const obj = await Preferences.get({key:llave});

@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { HelperService } from 'src/app/services/helper.service';
 import { StorageService } from 'src/app/services/storage.service';
@@ -17,8 +16,7 @@ export class ConfirmQRPage implements OnInit {
   datitos:any=[];
   constructor(private modalController:ModalController,
               private storage:StorageService,
-              private helper:HelperService,
-              private router: Router) { }
+              private helper:HelperService) { }
 
   ngOnInit() {
     console.log("33333",this.datos);

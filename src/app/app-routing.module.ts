@@ -22,7 +22,7 @@ const routes: Routes = [
   {
     canActivate:[AngularFireAuthGuard],
     data:{authGuardPipe: redireccionLogin},
-    path: 'inicio',
+    path: '/inicio',
     loadChildren: () => import('./pages/inicio/inicio.module').then( m => m.InicioPageModule)
   },
   {
@@ -42,10 +42,6 @@ const routes: Routes = [
   {
     path: 'escaneo',
     loadChildren: () => import('./pages/escaneo/escaneo.module').then( m => m.EscaneoPageModule)
-  },
-  {
-    path: 'detalle-asig',
-    loadChildren: () => import('./pages/detalle-asig/detalle-asig.module').then( m => m.DetalleAsigPageModule)
   },
   {
     path: 'registro-asig',

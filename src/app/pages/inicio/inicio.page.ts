@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import{Inicio} from 'src/app/models/inicio';
 import { AnimationController, IonCard, MenuController } from '@ionic/angular';
 import type { Animation } from '@ionic/angular';
@@ -32,15 +32,17 @@ export class InicioPage implements OnInit {
               private helper:HelperService,
               private auth:AngularFireAuth,
               private storage:StorageService,
-              private menuCtrl:MenuController){}
+              private menuCtrl:MenuController,
+  ){}
 
   ngOnInit(){ 
     this.cargarInicio();
     setTimeout(()=>{this.loading=false},3000)
     this.MostrarGeolocalizacion();
-
-    this.helper.showtoast("¡¡¡Bienvenido esclavo de Duoc!!!")
+    this.helper.showtoast("¡¡¡Bienvenido esclavo de Duoc!!!");
   }
+
+  
 
   async MostrarGeolocalizacion() {
     const coordinates = await Geolocation.getCurrentPosition();
